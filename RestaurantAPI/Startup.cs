@@ -38,6 +38,7 @@ namespace RestaurantAPI
             services.AddScoped<ErrorHandlingMiddleware>();
             services.AddScoped<RequestTimeMiddleware>();
             services.AddSwaggerGen();
+            services.AddScoped<IDishService, DishService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

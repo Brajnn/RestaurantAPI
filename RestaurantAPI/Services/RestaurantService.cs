@@ -13,7 +13,7 @@ namespace RestaurantAPI.Services
     {
         private readonly RestaurantDbContext _dbContext;
         private readonly IMapper _mapper;
-        private readonly ILogger _logger;
+        private readonly ILogger<RestaurantService> _logger;
 
         public RestaurantService(RestaurantDbContext dbContext, IMapper mapepr, ILogger<RestaurantService> logger)
         {
