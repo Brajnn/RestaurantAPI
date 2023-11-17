@@ -11,6 +11,7 @@ namespace RestaurantAPI.Middleware
         private Stopwatch _stopWatch;
         public RequestTimeMiddleware(ILogger<RequestTimeMiddleware> logger)
         {
+            _logger= logger;
             _stopWatch=new Stopwatch();
         }
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
