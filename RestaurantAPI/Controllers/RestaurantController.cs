@@ -48,9 +48,10 @@ namespace RestaurantAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<UpdateRestaurantDto>> GetAll()
+        [AllowAnonymous]
+        public ActionResult<IEnumerable<UpdateRestaurantDto>> GetAll([FromQuery] string searchPhrase)
         {
-            var restaurantsDtos= _restaurantService.GetAll();
+            var restaurantsDtos= _restaurantService.GetAll(searchPhrase);
             return Ok(restaurantsDtos);
         }
 
