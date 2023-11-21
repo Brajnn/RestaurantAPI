@@ -35,15 +35,16 @@ namespace RestaurantAPI.Services
         public string GenerateJwt(LoginDto dto)
         {
             var user = _context.Users
-                .Include(u=>u.Role)
-                .FirstOrDefault(u=>u.Email== dto.Email);
+                .Include(u => u.Role)
+                .FirstOrDefault(u => u.Email == dto.Email);
+
             if (user is null)
             {
                 throw new BadRequestException("Invalid username or password");
             }
 
-            var result=_passwordHasher.VerifyHashedPassword(user, user.PasswordHash, dto.Password);
-            if(result == PasswordVerificationResult.Failed)
+            var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, dto.Password);
+            if (result == PasswordVerificationResult.Failed)
             {
                 throw new BadRequestException("Invalid username or password");
             }
@@ -54,8 +55,16 @@ namespace RestaurantAPI.Services
                 new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
                 new Claim(ClaimTypes.Role, $"{user.Role.Name}"),
                 new Claim("DateOfBirth", user.DateOfBirth.Value.ToString("yyyy-MM-dd")),
-                new Claim("Nationality", user.Nationality)
+
             };
+
+            if (!string.IsNullOrEmpty(user.Nationality))
+            {
+                claims.Add(
+                    new Claim("Nationality", user.Nationality)
+                    );
+            }
+
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));
             var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var expires = DateTime.Now.AddDays(_authenticationSettings.JwtExpireDays);
@@ -63,11 +72,12 @@ namespace RestaurantAPI.Services
             var token = new JwtSecurityToken(_authenticationSettings.JwtIssuer,
                 _authenticationSettings.JwtIssuer,
                 claims,
-                expires:expires,
-                signingCredentials:cred);
+                expires: expires,
+                signingCredentials: cred);
 
             var tokenHandler = new JwtSecurityTokenHandler();
             return tokenHandler.WriteToken(token);
+
         }
 
         public void RegisterUser(RegisterUserDto dto)
