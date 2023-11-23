@@ -1,5 +1,4 @@
-RestaurantAPI
-Aplikacja "Restaurant Management" została stworzona jako część kursu .NET Core Web API. Służy do zarządzania informacjami o restauracjach oraz posiłkach oferowanych przez te restauracje. Aplikacja jest oparta na technologii .NET Core i używa Entity Framework do połączenia z bazą danych. Ponadto, oferuje autentykację użytkownika oraz umożliwia dodawanie, usuwanie i modyfikowanie rekordów w bazie danych.
+Aplikacja "RestaurantAPI" została stworzona jako część kursu .NET Core Web API. Służy do zarządzania informacjami o restauracjach oraz posiłkach oferowanych przez te restauracje. Aplikacja jest oparta na technologii .NET Core i używa Entity Framework do połączenia z bazą danych. Ponadto, oferuje autentykację użytkownika oraz umożliwia dodawanie, usuwanie i modyfikowanie rekordów w bazie danych.
 
 Zarządzanie Restauracjami:
 
