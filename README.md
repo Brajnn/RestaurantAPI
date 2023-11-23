@@ -5,11 +5,13 @@ Zarządzanie Restauracjami:
 
 Dodawanie nowych restauracji do systemu.
 Usuwanie restauracji, które nie są już aktywne.
+
 Zarządzanie Daniami:
 
 Dodawanie nowych dań do menu restauracji.
 Aktualizacja informacji o posiłkach.
 Usuwanie dań z menu.
+
 Baza Danych:
 
 Aplikacja korzysta z Entity Framework do komunikacji z bazą danych.
